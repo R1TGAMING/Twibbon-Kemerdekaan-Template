@@ -43,6 +43,8 @@ def receive() :
         img_new.save(bytes, format='PNG')
         bytes.seek(0)
         img_new.save("./tes.png")
-        return send_file(bytes, mimetype='image/png')
+        return send_file(bytes, mimetype='image/png', download_name='%s.png' % f.filename, as_attachment=True)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
