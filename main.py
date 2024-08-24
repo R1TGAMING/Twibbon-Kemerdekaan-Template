@@ -9,7 +9,7 @@ app = Flask(__name__)
 #router awal
 @app.route('/')
 def render():
-    return render_template('main.html')
+    return render_template('main.html', img="./static/ImagesTwibbon/twibbon1.png")
 
 #mengakses route get untuk mendapatkan file image 
 @app.route("/get", methods= ["POST"])
@@ -39,9 +39,11 @@ def receive() :
         #mensave image ke local
         img_new.save("./here_the_image.png")
 
-        #mereturn hasil gambar base64
-        return send_file(bytes, mimetype='image/png', download_name='%s.png' % f.filename, as_attachment=True)
+        #mereturn render html dan hasil gambar base64
+        #return send_file(bytes, mimetype='image/png', download_name='%s' % f.filename, as_attachment=True)
+        return render_template("view-image.html", img_base64 = base64.b64encode(bytes.getvalue()).decode('utf-8'))
+
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080, debug=True)
