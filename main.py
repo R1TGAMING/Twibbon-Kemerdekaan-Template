@@ -14,8 +14,8 @@ def render():
 #mengakses route get untuk mendapatkan file image 
 @app.route("/get", methods= ["POST"])
 def receive() :
-    # jika method post maka akan mengeksekusi perintah
-    if request.method == "POST" :
+    
+    
         #mengambil hasil inputan gambar user
         f = request.files['file']
 
